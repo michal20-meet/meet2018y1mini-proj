@@ -64,23 +64,23 @@ RIGHT_EDGE = 400
 LEFT_EDGE = -400
 
 def up():
+    global direction
     direction=UP
-    move_snake()
     print("You pressed the up key!")
 
 def down():
+    global direction
     direction=DOWN
-    move_snake()
     print("You pressed the down key!")
 
 def left():
+    global direction
     direction=LEFT
-    move_snake()
     print("You pressed the left key!")
 
 def right():
+    global direction
     direction=RIGHT
-    move_snake()
     print("You pressed the right key!")
 
 turtle.onkeypress(up, UP_ARROW) 
@@ -135,6 +135,19 @@ def move_snake():
     snake.clearstamp(old_stamp)
     pos_list.pop(0)
 
+    turtle.ontimer(move_snake,TIME_STEP)
+
+move_snake()
 
 
+turtle.register_shape("trash.gif")
+food = turtle.clone()
+food.shape("trash.gif") 
 
+food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
+food_stamps = []
+
+for this_food_pos in food_pos :
+    food.goto(this_food_pos)
+    stamp_ID2=food.stamp()
+    food_stamp.append(stamp_ID2)
